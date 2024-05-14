@@ -7,8 +7,20 @@ exports.adminlogin = async (req,res,next) => {
     const savedResponse = await mongo.selectedDb.collection('users').insertOne({"email":"user123@gmail.com", "password":"user123"});
     let { email, password } = req.body;
     let existingUser = await mongo.selectedDb.collection('users').findOne({ email: email });
+    console.log(existingUser);
+    
     let existingPassword = await mongo.selectedDb.collection('users').findOne({ password: password });
-   
+    console.log(existingPassword);
+    if(existingUser  && existingPassword  ) {
+        const response= {
+            email:existingUser.email,
+            password:existingPassword.password
+        };
+        res.send(response);
+        
+    }
+        
+
     if(!existingUser  && !existingPassword  ) 
     return res.status(400).send({msg: "You are not a registered admin"});
   

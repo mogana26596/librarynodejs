@@ -13,7 +13,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/register', register1);
+
+app.use('/register',register1);
 app.use('/librarian', librarian1);
 app.use('/admin', admin1);
 app.listen(process.env.PORT);

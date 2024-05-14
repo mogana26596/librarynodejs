@@ -2,12 +2,12 @@ const { ObjectId } = require('mongodb');
 const mongo = require('../connect');
 
 module.exports.createLibrarian = async (req,res,next) => {
-    try{
-        const insertedResponse = await mongo.selectedDb.collection("librarian").insertOne(req.body);
-        res.send(insertedResponse);
-    } catch(err) {
+     try{
+       const insertedResponse = await mongo.selectedDb.collection("librarian").insertOne(req.body);
+         res.send(insertedResponse);
+     } catch(err) {
         console.error(err);
-        res.status(500).send(err);
+         res.status(500).send(err);
     }
 }
 
